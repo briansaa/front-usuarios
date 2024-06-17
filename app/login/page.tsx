@@ -1,13 +1,14 @@
 'use client'
 
-import Image from "next/image";
+import Image from "next/image"
 import imgLoginHeader from "@/public/img/img_login_header.png"
-import { useEffect, useState } from "react";
-import { useField, InputForm } from "@/ui/form/input";
-import { login } from "@/lib/auth/authentication";
-import { useRouter, useSearchParams } from "next/navigation";
-import { getCookie, removeCookie, setCookie } from "@/lib/utils/cookiesManage";
-import { redirectClient } from "@/lib/utils/redirectManage";
+import { useEffect, useState } from "react"
+import { useField, InputForm } from "@/ui/form/input"
+import { login } from "@/lib/auth/authentication"
+import { useSearchParams } from "next/navigation"
+import { getCookie, removeCookie, setCookie } from "@/lib/utils/cookiesManage"
+import { redirectClient } from "@/lib/utils/redirectManage"
+import ImageBackground from "@/public/img/img_lines_background.png"
 
 const useCustomStatus = () => {
     const [isStatus, setIsStatus] = useState(false)
@@ -19,7 +20,6 @@ const useCustomStatus = () => {
 
 export default function Login() {
 
-    const router = useRouter()
     const searchParams = useSearchParams()
 
     const loading = useCustomStatus()
@@ -51,23 +51,18 @@ export default function Login() {
     }, [])
 
     return (
-        <div className="w-screen h-screen bg-slate-200">
+        <div className="w-screen h-screen">
+            <Image src={ImageBackground} alt="Lines background" width={1440} height={850} className="absolute top-0 left-0 w-screen h-screen -z-10" />
             <div className="h-full flex justify-center items-center">
-                <div className="w-10/12 md:w-1/2 xl:w 2xl:w-1/3 h-auto bg-white/95 shadow-md rounded pt-10">
+                <div className="w-10/12 md:w-1/2 xl:w 2xl:w-1/3 h-auto bg-white shadow-md rounded pt-10">
                     <div className="h-full flex flex-col justify-center items-center">
                         <div className="h-auto">
                             <Image src={imgLoginHeader} alt="Logo" width={200} height={150} />
                         </div>
                         <div className="flex flex-col gap-y-4">
                             <div className="font-bold text-xl text-center py-8">Iniciar Sesión</div>
-                            <div className="flex items-center">
-                                <label htmlFor="username" className="w-6/12 pe-5 font-semibold">Usuario:</label>
-                                <InputForm type="text" id="username" placeholder="Usuario" handleEvent={usernameInput.handleChange} />
-                            </div>
-                            <div className="flex items-center">
-                                <label htmlFor="password" className="w-6/12 pe-5 font-semibold">Contraseña:</label>
-                                <InputForm type="password" id="password" placeholder="Contraseña" handleEvent={passwordInput.handleChange} />
-                            </div>
+                            <InputForm nameLabel="Usuario" type="text" id="username" placeholder="Usuario" handleEvent={usernameInput.handleChange} />
+                            <InputForm nameLabel="Contraseña" type="password" id="password" placeholder="Contraseña" handleEvent={passwordInput.handleChange} />
                         </div>
                         <div className={`${error.isStatus ? 'block mt-8 text-red-500 font-semibold' : 'hidden'}`}>
                             <span>Usuario o contraseña incorrectos</span>

@@ -12,12 +12,17 @@ const useField = () => {
 }
 
 
-const InputForm = ({ type, id, placeholder, handleEvent }: { type: string, id: string, placeholder: string, handleEvent: ChangeEventHandler<HTMLInputElement> }) => {
+const InputForm = ({ nameLabel, type, id, placeholder, handleEvent }:
+    { nameLabel: string, type: string, id: string, placeholder: string, handleEvent: ChangeEventHandler<HTMLInputElement> }) => {
 
     return (
-        <input type={type} id={id} placeholder={placeholder} onChange={handleEvent}
-            className="outline-none rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300
+        <div className="flex items-center">
+            <label htmlFor={id} className="w-6/12 pe-5 font-semibold">{nameLabel}</label>
+            <input type={type} id={id} placeholder={placeholder} onChange={handleEvent}
+                className="outline-none rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300
             placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6" />
+        </div>
+
     )
 }
 

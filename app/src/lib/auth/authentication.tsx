@@ -10,6 +10,7 @@ export const login = async (username: string, password: string) => {
         headers: {
             "Content-Type": "application/json",
         },
+        cache: 'no-cache',
         body: JSON.stringify({
             username,
             password,

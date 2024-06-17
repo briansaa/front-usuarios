@@ -8,7 +8,8 @@ const getAllEducationalAndRecreationalFacilityType = async () => {
 
     const response = await fetch(`${process.env.baseUrl}/educational/recreational/facilities/type`, {
         headers: await buildHeader(),
-        method: 'GET'
+        method: 'GET',
+        cache: 'no-cache'
     })
 
     const data = await response.json()
