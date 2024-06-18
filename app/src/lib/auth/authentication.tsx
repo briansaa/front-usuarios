@@ -17,7 +17,7 @@ export const login = async (username: string, password: string) => {
         }),
     })
 
-    if (response.status === 401) return undefined
+    if (response.status === 401) throw new Error("Usuario o contraseña incorrectos")
 
     return await response.json() as TAuthModel;
 }

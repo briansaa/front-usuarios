@@ -24,7 +24,8 @@ const TimeTableCell = (props: TimeTableCellProps) => {
     )
 }
 
-const SchedulerComponent = ({ data, locale, height, startHour, endHour }: { data: any[], locale: string, height: number, startHour: number, endHour: number }) => {
+const SchedulerComponent = ({ data, locale, height, startHour, endHour, cellDuration = 60 }:
+    { data: any[], locale: string, height: number, startHour: number, endHour: number, cellDuration?: number }) => {
 
     const handleChange = ({ startDate, endDate }: { startDate: Date, endDate: Date }) => {
         console.log(startDate, endDate)
@@ -36,7 +37,7 @@ const SchedulerComponent = ({ data, locale, height, startHour, endHour }: { data
                 <ViewState
                     defaultCurrentDate={new Date()}
                 />
-                <WeekView startDayHour={startHour} endDayHour={endHour} cellDuration={60}
+                <WeekView startDayHour={startHour} endDayHour={endHour} cellDuration={cellDuration}
                     timeTableCellComponent={(props) => <TimeTableCell {...props} onClick={handleChange} />} />
                 <Toolbar />
                 <DateNavigator />

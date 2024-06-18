@@ -9,6 +9,7 @@ import { useSearchParams } from "next/navigation"
 import { getCookie, removeCookie, setCookie } from "@/lib/utils/cookiesManage"
 import { redirectClient } from "@/lib/utils/redirectManage"
 import ImageBackground from "@/public/img/img_lines_background.png"
+import { toast } from "react-toastify"
 
 const useCustomStatus = () => {
     const [isStatus, setIsStatus] = useState(false)
@@ -33,6 +34,7 @@ export default function Login() {
         error.handleStatus(false)
 
         const authData = await login(usernameInput.value, passwordInput.value)
+            .catch(() => { toast.error("Ocurrió un error al iniciar sesión. ", { theme: "dark" }) })
 
         if (!authData) {
             loading.handleStatus(false)

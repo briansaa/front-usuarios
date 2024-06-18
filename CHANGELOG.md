@@ -1,3 +1,8 @@
+#### [1.2.2] - 2024-06-18
+
+- Added new package for notifications
+- Added part 2 of reservation page
+
 #### [1.2.1] - 2024-06-17
 
 - Add scheduler component

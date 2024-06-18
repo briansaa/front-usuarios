@@ -1,6 +1,4 @@
-import Image from "next/image"
 import { ChangeEventHandler } from "react"
-import { Loading } from "../loading"
 
 interface SelectValue {
     id: string
@@ -18,7 +16,7 @@ const SelectInput = ({ nameLabel, id, values, isLoading, handleEvent }:
                 px-4 pr-8 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 ${isLoading ? 'opacity-80 cursor-progress' : ''}`}
                 disabled={isLoading} required>
                 <option value="" >Seleccionar</option>
-                {isLoading && values.map((value) => <option key={value.id} value={value.key}>{value.description}</option>)}
+                {!isLoading && values.map((value) => <option key={value.id} value={value.key}>{value.description}</option>)}
             </select>
             {/* <button type="button" className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1
             ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">

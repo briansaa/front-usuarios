@@ -10,16 +10,17 @@
   },
   "dependencies": {
     "@devexpress/dx-react-core": "~4.0.8",
-    "@devexpress/dx-react-scheduler": "^4.0.8",
-    "@devexpress/dx-react-scheduler-material-ui": "^4.0.8",
+    "@devexpress/dx-react-scheduler": "~4.0.8",
+    "@devexpress/dx-react-scheduler-material-ui": "~4.0.8",
     "jose": "~5.4.0",
     "next": "~14.2.4",
     "react": "^18.3.1",
     "react-dom": "~18.3.1",
+    "react-toastify": "~10.0.5",
     "sharp": "~0.33.4"
   },
   "devDependencies": {
-    "@types/node": "~20.14.2",
+    "@types/node": "~20.14.4",
     "@types/react": "~18.3.3",
     "@types/react-dom": "~18.3.0",
     "eslint": "~8.57.0",
