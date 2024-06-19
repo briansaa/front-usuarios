@@ -18,4 +18,5 @@ export interface TReservationModel {
     reservationDate: string
     startTime: string
     endTime: string
+    educationalAndRecreationalFacility: string
 }

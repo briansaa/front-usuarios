@@ -1,3 +1,8 @@
+#### [1.2.3] - 2024-06-18
+
+- Updated reservation page
+- Reservation page completed
+
 #### [1.2.2] - 2024-06-18
 
 - Added new package for notifications

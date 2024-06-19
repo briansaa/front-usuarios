@@ -1,6 +1,7 @@
 import Paper from '@mui/material/Paper'
-import { ViewState } from '@devexpress/dx-react-scheduler'
+import { AppointmentForm, ConfirmationDialog, EditingState, IntegratedEditing, ViewState } from '@devexpress/dx-react-scheduler'
 import { Scheduler, Toolbar, DateNavigator, Appointments, TodayButton, WeekView } from '@devexpress/dx-react-scheduler-material-ui'
+import { Dispatch } from 'react';
 
 
 interface TimeTableCellProps extends WeekView.TimeTableCellProps {
@@ -24,12 +25,10 @@ const TimeTableCell = (props: TimeTableCellProps) => {
     )
 }
 
-const SchedulerComponent = ({ data, locale, height, startHour, endHour, cellDuration = 60 }:
-    { data: any[], locale: string, height: number, startHour: number, endHour: number, cellDuration?: number }) => {
+const SchedulerComponent = ({ data, locale, height, startHour, endHour, setValue, cellDuration = 60 }:
+    { data: any[], locale: string, height: number, startHour: number, endHour: number, setValue?: Dispatch<any>, cellDuration?: number }) => {
 
-    const handleChange = ({ startDate, endDate }: { startDate: Date, endDate: Date }) => {
-        console.log(startDate, endDate)
-    }
+    const handleChange = ({ startDate, endDate }: { startDate: Date, endDate: Date }) => { if (setValue) setValue({ startDate, endDate }) }
 
     return (
         <Paper>
@@ -37,12 +36,14 @@ const SchedulerComponent = ({ data, locale, height, startHour, endHour, cellDura
                 <ViewState
                     defaultCurrentDate={new Date()}
                 />
+                <EditingState onCommitChanges={() => { }} />
+                <IntegratedEditing />
                 <WeekView startDayHour={startHour} endDayHour={endHour} cellDuration={cellDuration}
                     timeTableCellComponent={(props) => <TimeTableCell {...props} onClick={handleChange} />} />
                 <Toolbar />
                 <DateNavigator />
                 <TodayButton />
-                <Appointments />
+                <Appointments  />
             </Scheduler>
         </Paper>
     )

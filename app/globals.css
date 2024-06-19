@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "react-toastify/dist/ReactToastify.css";
+
 :root {
   --foreground-rgb: rgb(0, 0, 0);
   --text-color-rgb: rgb(5, 5, 5);
