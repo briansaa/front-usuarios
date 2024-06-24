@@ -11,7 +11,6 @@ import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import { TReservationModel } from "@/app/src/models/facility"
 import { redirectClient } from "@/app/src/lib/utils/redirectManage"
-import { resolve } from "path"
 
 
 const parseHourFromTimeString = (timeString: string) => {
@@ -88,8 +87,10 @@ export default function Home({ params }: { params: { identifier: string[] } }) {
 
         response.data.recreationalHours = response.data.recreationalHours.sort((a, b) => a.startTime.localeCompare(b.startTime))
 
-        const startHour = parseHourFromTimeString(response.data.recreationalHours[0].startTime)
-        let endHour = parseHourFromTimeString(response.data.recreationalHours[response.data.recreationalHours.length - 1].endTime)
+        const startHour = response.data.recreationalHours.length > 0 ? parseHourFromTimeString(response.data.recreationalHours[0].startTime) : 9
+        let endHour = response.data.recreationalHours.length > 0 ? parseHourFromTimeString(response.data.recreationalHours[response.data.recreationalHours.length - 1].endTime) : 13
+
+        if (response.data.recreationalHours.length === 0) toast.error(`El ${params.identifier[1]} no tiene horarios para reservar`)
 
         setScheduleStartEndHour({ startHour: startHour, endHour: endHour })
         setLoadingSchedule(false)

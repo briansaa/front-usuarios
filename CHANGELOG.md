@@ -1,3 +1,7 @@
+#### [1.2.4] - 2024-06-23
+
+- Fix error on facility not contain hours reservation
+
 #### [1.2.3] - 2024-06-19
 
 - Updated reservation page
