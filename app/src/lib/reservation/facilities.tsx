@@ -34,10 +34,12 @@ const saveReservation = async (reservation: TReservationModel) => {
         body: JSON.stringify(reservation)
     })
 
-    if (response.status === 401) return removeCookie('jwt-token')
+    if (response.status === 401) {
+        removeCookie('jwt-token')
+        return { status: 401, message: 'Tu sesión expiró. Vuelve a iniciar sesión.' } as ApiResponse<TReservationModel>
+    }
 
-    if (response.status === 400) return undefined
-
+    // La API responde 400 con un mensaje (p. ej. horario ya reservado); se devuelve para mostrarlo.
     return await response.json() as ApiResponse<TReservationModel>
 }
 

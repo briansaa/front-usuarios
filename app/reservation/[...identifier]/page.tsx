@@ -125,6 +125,15 @@ export default function Home({ params }: { params: { identifier: string[] } }) {
 
     await saveReservation(reservation)
       .then(async (response) => {
+        if (!response || response.status !== 200) {
+          setLoadingSchedule(false)
+          const message = response?.message?.includes('already reserved')
+            ? 'Ese horario ya está reservado. Elige otro bloque.'
+            : response?.message || 'Error al guardar la reserva'
+          toast.error(message)
+          if (response?.status === 401) redirectClient('/login')
+          return
+        }
         toast.success("Reserva guardada correctamente")
 
         await new Promise((resolve) => setTimeout(resolve, 2500))
@@ -150,7 +159,7 @@ export default function Home({ params }: { params: { identifier: string[] } }) {
             <div className="w-2/3 flex justify-end gap-x-4">
               <span className="mx-auto flex items-center rounded-md border border-blue-400 p-2">Reserva: {selectedDate ? `${parseDateToViewUser(selectedDate)}` : loadingSchedule ? 'Cargando...' : 'Seleccione una fecha'}</span>
               <button
-                className={`bg-blue-500 hover:bg-blue-700 font-semibold py-2 px-4 rounded text-white ${selectedDate ? '' : 'cursor-not-allowed'}`}
+                className={`bg-blue-500 hover:bg-blue-700 font-semibold py-2 px-4 rounded text-white disabled:opacity-50 ${selectedDate ? '' : 'cursor-not-allowed'}`}
                 disabled={!selectedDate} onClick={handleReservation}>Reservar</button>
               <Link href={`/`}
                 className={`bg-purple-500 hover:bg-purple-600 font-semibold py-2 px-4 rounded text-white ${loadingSchedule ? 'cursor-not-allowed' : ''}`}>Atrás</Link>
